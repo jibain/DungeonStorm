@@ -1,0 +1,10 @@
+doctype html
+html
+    head
+        title Create Character
+    body
+        h1 Character Creation
+        form(action='/characters/create', method='post')
+            label(for='characterName') Character Name:
+            input(type='text', id='characterName', name='characterName')
+            button(type='submit') Create
