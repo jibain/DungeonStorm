@@ -1,10 +1,30 @@
 doctype html
 html
     head
-        title Create Character
+        title Character Creation
+        link(rel='stylesheet', href='/styles/styles.css')
     body
-        h1 Character Creation
-        form(action='/characters/create', method='post')
-            label(for='characterName') Character Name:
-            input(type='text', id='characterName', name='characterName')
-            button(type='submit') Create
+        .container
+            h1 Character Creation
+            form(action='/characters/create', method='post')
+                label(for='characterName') Character Name:
+                input(type='text', id='characterName', name='characterName')
+                label(for='race') Race:
+                select(id='race', name='race')
+                    option(value='human') Human
+                    option(value='dwarf') Dwarf
+                    option(value='elf') Elf
+                label(for='class') Class:
+                select(id='class', name='class')
+                    option(value='paladin') Paladin
+                    option(value='bard') Bard
+                    option(value='wizard') Wizard
+                    option(value='sorcerer') Sorcerer
+                    option(value='warlock') Warlock
+                    option(value='fighter') Fighter
+                    option(value='barbarian') Barbarian
+                    option(value='druid') Druid
+                    option(value='cleric') Cleric
+                label(for='level') Level:
+                input(type='number', id='level', name='level', min='1', max='20')
+                button(type='submit') Create

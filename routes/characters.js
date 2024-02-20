@@ -9,4 +9,5 @@ router.get('/create', characterController.createCharacterForm);
 router.post('/create', characterController.createCharacter);
 router.get('/:id', characterController.getCharacterSheet);
 
+
 module.exports = router;

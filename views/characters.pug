@@ -1,0 +1,11 @@
+doctype html
+html
+    head
+        title Characters
+        link(rel='stylesheet', href='/styles/styles.css') // Link to external stylesheet for styling
+    body
+        .container
+            h1 Characters
+            ul
+                each character in characters
+                    li= character.characterName

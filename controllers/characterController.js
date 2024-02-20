@@ -1,25 +1,20 @@
+const Character = require('../models/Character');
+
 const characterController = {};
-let nextCharacterId = 1;
-const characters = {}; // This can be replaced with a database
 
-characterController.createCharacterForm = (req, res) => {
-    res.render('characterCreation');
-};
-
-characterController.createCharacter = (req, res) => {
-    const characterName = req.body.characterName;
-    const character = { id: nextCharacterId++, name: characterName };
-    characters[character.id] = character; // Save character to "database" (in-memory object for now)
-    res.redirect(`/characters/${character.id}`);
-};
-
-characterController.getCharacterSheet = (req, res) => {
-    const characterId = req.params.id;
-    const character = characters[characterId];
-    if (!character) {
-        res.status(404).send('Character not found');
-    } else {
+characterController.getCharacterSheet = async (req, res) => {
+    try {
+        const characterId = req.params.id;
+        // Fetch character data from the database
+        const character = await Character.findById(characterId);
+        if (!character) {
+            return res.status(404).send('Character not found');
+        }
+        // Render the characterSheet.pug template with the character data
         res.render('characterSheet', { character });
+    } catch (error) {
+        console.error('Error fetching character:', error);
+        res.status(500).send('Internal Server Error');
     }
 };
 
